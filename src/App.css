@@ -1,0 +1,22 @@
+img {
+ max-width: 150px;
+ margin: 2px; 
+}
+
+.bg {
+  background-image: url(./images/CNC.png);
+  max-width:100%;
+  width:95%;
+  background-repeat: no-repeat scroll;
+  background-position: center top;
+  height: 960px;
+  /* position: relative; */
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
