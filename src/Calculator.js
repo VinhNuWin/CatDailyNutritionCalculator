@@ -1,25 +1,31 @@
 import { useState } from 'react';
 import { 
+    chakra,
     Input, 
     Text, 
     Stack,  
     Stat,
     StatLabel,
     StatNumber,
-    StatHelpText,
-    StatArrow,
     StatGroup,
     Button,
     useDisclosure,
     ScaleFade,
-    Box
+    Box,
+    HStack
      } from '@chakra-ui/react';
 import './styles.css';
+import { motion, isValidMotionProp } from 'framer-motion';
+import { containerVariants, dropUpVariants } from './animation';
+
+const ChakraBox = chakra(motion.div, {
+    shouldForwardProp: isValidMotionProp,
+  })
 
 function Calculator () {
     const { isOpen, onToggle } = useDisclosure();
 
-    const [weight, setWeight] = useState(0);
+    const [weight, setWeight] = useState(2);
 
     const protein = (1.2 * weight);
     const fat = (.68 * weight);
@@ -31,63 +37,73 @@ function Calculator () {
 
 
     return (
-        <div className='max-w-full'>
-        <center>
-        <div className='p-20'>
-            <Stack spacing={3} >
-                <Text mb='8px'>Cat's Weight:</Text>
-                <Input background='white' onChange={(e) => setWeight(e.target.value)} variant='filled' placeholder='weight in lbs' size='lg' value={weight} />
-                <Button onClick={onToggle}>Get Nutrition</Button>
-            </Stack>
-        </div>
-        </center>
-        <div className='pt-20 text-center grid-row'>
-            <ScaleFade initialScale={0.9} in={isOpen}>
-                <StatGroup >
-                <Box background='white' p={4} maxW='xlg' borderWidth='2px' borderRadius='lg' overflow='hidden' color='black'>
-                    <Box borderWidth='1px' p={10} alignItems='baseline' borderRadius='lg' >
-                <Stat >
-                    <StatLabel fontSize='lg' fontWeight='semibold' >Protein</StatLabel>
-                    <StatNumber>{protein} g</StatNumber>
-                </Stat>
-                </Box>
-                </Box>
-                <Box background='white' p={4} maxW='xlg' borderWidth='2px' borderRadius='lg' overflow='hidden' color='black'>
-                    <Box borderWidth='1px' p={10} alignItems='baseline' borderRadius='lg' >
-                <Stat >
-                    <StatLabel fontSize='lg' fontWeight='semibold' >Fat</StatLabel>
-                    <StatNumber>{fat} g</StatNumber>
-                </Stat>
-                </Box>
-                </Box>
-                <Box background='white' p={4} maxW='xlg' borderWidth='2px' borderRadius='lg' overflow='hidden' color='black'>
-                    <Box borderWidth='1px' p={10} alignItems='baseline' borderRadius='lg' >
-                <Stat >
-                    <StatLabel fontSize='lg' fontWeight='semibold' >Carbohydrates</StatLabel>
-                    <StatNumber>{carbohydrates} g</StatNumber>
-                </Stat>
-                </Box>
-                </Box>
-                <Box background='white' p={4} maxW='xlg' borderWidth='2px' borderRadius='lg' overflow='hidden' color='black'>
-                <Box borderWidth='1px' p={10} alignItems='baseline' borderRadius='lg' >
-                <Stat >
-                    <StatLabel fontSize='lg' fontWeight='semibold' >Fiber</StatLabel>
-                    <StatNumber>{fiber} g</StatNumber>
-                </Stat>
-                </Box>
-                </Box>
-                <Box background='white' p={4} maxW='xlg' borderWidth='2px' borderRadius='lg' overflow='hidden' color='black'>
-                    <Box borderWidth='1px' p={10} alignItems='baseline' borderRadius='lg' >
-                <Stat >
-                    <StatLabel fontSize='lg' fontWeight='semibold' >Water</StatLabel>
-                    <StatNumber>{water} ml</StatNumber>
-                </Stat>
-                </Box>
-                </Box>
-            </StatGroup>
-            </ScaleFade>
-        </div>
-        </div>
+        <div>
+        { isOpen ? (
+        <HStack spacing={8} className='pt-24 place-content-center'>
+        <div className='visible invisible' ></div>
+        <motion.div
+            className='mt-28 p-3 inline-grid grid-cols-5 place-content-center border bg-white rounded-lg'
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+          <motion.Box variants={dropUpVariants}>
+            <Box p={5} shadow='md' borderWidth='1px' background='white'>
+            <Stat >
+                <StatLabel fontSize='lg' fontWeight='semibold' >Protein</StatLabel>
+                <StatNumber>{protein} g</StatNumber>
+            </Stat>
+            </Box>
+          </motion.Box>
+          <motion.Box variants={dropUpVariants}>
+          <Box p={5} shadow='md' borderWidth='1px'>
+            <Stat >
+                <StatLabel fontSize='lg' fontWeight='semibold' >Fat</StatLabel>
+                <StatNumber>{fat} g</StatNumber>
+            </Stat>
+            </Box>
+          </motion.Box>
+          <motion.Box variants={dropUpVariants}>
+          <Box p={5} shadow='md' borderWidth='1px'>
+            <Stat >
+                <StatLabel fontSize='lg' fontWeight='semibold' >Carbohydrates</StatLabel>
+                <StatNumber>{carbohydrates} g</StatNumber>
+            </Stat>
+            </Box>
+          </motion.Box>
+          <motion.Box variants={dropUpVariants}>
+          <Box p={5} shadow='md' borderWidth='1px'>
+            <Stat >
+                <StatLabel fontSize='lg' fontWeight='semibold' >Fiber</StatLabel>
+                <StatNumber>{fiber} g</StatNumber>
+            </Stat>
+            </Box>
+          </motion.Box>
+          <motion.Box variants={dropUpVariants}>
+          <Box p={5} shadow='md' borderWidth='1px'>
+            <Stat >
+                <StatLabel fontSize='lg' fontWeight='semibold' >Water</StatLabel>
+                <StatNumber>{water} ml</StatNumber>
+            </Stat>
+            </Box>
+          </motion.Box>
+        </motion.div>
+        </HStack>
+        ) : (
+            <div>
+            </div>
+        )}
+
+                <div className='absolute inset-x-96 bottom-96 h-16'>
+                <center>
+                    <Stack spacing={1} >
+                        <Input background='white' onChange={(e) => setWeight(e.target.value)} variant='filled' placeholder='weight in lbs' size='md' value={weight} />
+                        <Button size='lg' onClick={onToggle}>Get Nutrition</Button>
+                    </Stack>
+                </center>
+                </div>
+
+            </div>
     )
 }
 
