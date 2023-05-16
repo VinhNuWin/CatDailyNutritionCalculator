@@ -3,6 +3,10 @@ img {
  margin: 2px; 
 }
 
+.border {
+  border: 3px solid lightgreen;
+}
+
 .bg {
   background-image: url(./images/CNC.png);
   display: flex;

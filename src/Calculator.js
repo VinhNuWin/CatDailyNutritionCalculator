@@ -37,18 +37,30 @@ function Calculator () {
 
 
     return (
-        <div>
+      <div>
+      <div className='flex justify-center mt-5'>
+      <center>
+          <Stack spacing={1} >
+              <Input background='white' onChange={(e) => setWeight(e.target.value)} variant='filled' placeholder='weight in lbs' value={weight} />
+              <Button colorScheme='orange' variant='outline' size='sm' onClick={onToggle}>Get Nutrition</Button>
+          </Stack>
+      </center>
+      </div>
+      <div className='h-64'>
+      </div>
+      <div>
+        <div className='flex justify-center h-96 mr-8'>
         { isOpen ? (
-        <HStack spacing={8} className='pt-24 place-content-center'>
-        <div className='visible invisible' ></div>
+        <HStack spacing={8} className=''>
+        <div className='' ></div>
         <motion.div
-            className='mt-28 p-3 inline-grid grid-cols-5 place-content-center border bg-white rounded-lg'
+            className='flex content-between'
             variants={containerVariants}
             initial="hidden"
             animate="visible"
         >
           <motion.Box variants={dropUpVariants}>
-            <Box p={5} shadow='md' borderWidth='1px' background='white'>
+            <Box p={5} shadow='md' borderWidth='2px' background='white'>
             <Stat >
                 <StatLabel fontSize='lg' fontWeight='semibold' >Protein</StatLabel>
                 <StatNumber>{protein} g</StatNumber>
@@ -56,7 +68,7 @@ function Calculator () {
             </Box>
           </motion.Box>
           <motion.Box variants={dropUpVariants}>
-          <Box p={5} shadow='md' borderWidth='1px'>
+          <Box p={5} shadow='md' borderWidth='2px' background='white'>
             <Stat >
                 <StatLabel fontSize='lg' fontWeight='semibold' >Fat</StatLabel>
                 <StatNumber>{fat} g</StatNumber>
@@ -64,7 +76,7 @@ function Calculator () {
             </Box>
           </motion.Box>
           <motion.Box variants={dropUpVariants}>
-          <Box p={5} shadow='md' borderWidth='1px'>
+          <Box p={5} shadow='md' borderWidth='2px' background='white'>
             <Stat >
                 <StatLabel fontSize='lg' fontWeight='semibold' >Carbohydrates</StatLabel>
                 <StatNumber>{carbohydrates} g</StatNumber>
@@ -72,7 +84,7 @@ function Calculator () {
             </Box>
           </motion.Box>
           <motion.Box variants={dropUpVariants}>
-          <Box p={5} shadow='md' borderWidth='1px'>
+          <Box p={5} shadow='md' borderWidth='2px' background='white'>
             <Stat >
                 <StatLabel fontSize='lg' fontWeight='semibold' >Fiber</StatLabel>
                 <StatNumber>{fiber} g</StatNumber>
@@ -80,7 +92,7 @@ function Calculator () {
             </Box>
           </motion.Box>
           <motion.Box variants={dropUpVariants}>
-          <Box p={5} shadow='md' borderWidth='1px'>
+          <Box p={5} shadow='md' borderWidth='2px' background='white'>
             <Stat >
                 <StatLabel fontSize='lg' fontWeight='semibold' >Water</StatLabel>
                 <StatNumber>{water} ml</StatNumber>
@@ -93,17 +105,9 @@ function Calculator () {
             <div>
             </div>
         )}
-
-                <div className='absolute inset-x-96 bottom-96 h-16'>
-                <center>
-                    <Stack spacing={1} >
-                        <Input background='white' onChange={(e) => setWeight(e.target.value)} variant='filled' placeholder='weight in lbs' size='md' value={weight} />
-                        <Button size='lg' onClick={onToggle}>Get Nutrition</Button>
-                    </Stack>
-                </center>
-                </div>
-
-            </div>
+                                </div>
+                                </div>
+                                </div>
     )
 }
 
