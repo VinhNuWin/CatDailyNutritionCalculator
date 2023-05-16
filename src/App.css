@@ -5,18 +5,61 @@ img {
 
 .bg {
   background-image: url(./images/CNC.png);
+  display: flex;
+  justify-content: center;
   max-width:100%;
-  width:95%;
+  width:100%;
+  background-size: 100vh;
   background-repeat: no-repeat scroll;
   background-position: center top;
   height: 960px;
   /* position: relative; */
-  margin-top: 0;
+  /* margin-top: 0;
   margin-right: auto;
   margin-bottom: 0;
-  margin-left: auto;
+  margin-left: auto; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+@media only screen and (min-width:1367px) {
+  :root {
+    --bg-image-jpg: url('./images/CNC.png');
+    --bg-size: cover;
+    --bg-pos: center center;
+  }
+}
+/* Large mobile device screens */
+@media only screen and (max-width:1366px) {
+  :root {
+    --bg-image-jpg: url('./images/CNC.png');
+    --bg-pos: top center;
+    --bg-size: 100vw auto;
+  }
+}
+/* Load a smaller image for smaller screens */
+@media only screen and (max-width:970px) {
+  :root {
+    --bg-image-jpg: url('./images/CNC.png');
+  }
+}
+/* Smallest image for phone screens */
+@media only screen and (max-width:500px) {
+  :root {
+    --bg-image-jpg: url('./images/CNC.png');
+  }
+}
+body {
+  background-color: #fff;
+  margin: 0px auto;
+  padding: 0px auto;
+}
+.webp body {
+  background: var(--bg-image-webp) var(--bg-pos) fixed no-repeat;
+  background-size: var(--bg-size);
+}
+.no-webp body {
+  background: var(--bg-image-jpg) var(--bg-pos) fixed / var(--bg-size) no-repeat;
 }
